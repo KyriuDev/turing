@@ -1,0 +1,9 @@
+$ $aababbXbbabaa$
+a a
+b b
+$ $ 
+aXa X
+bXb X
+X$ h
+h$ $
+

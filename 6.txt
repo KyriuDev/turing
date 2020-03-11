@@ -1,0 +1,19 @@
+$ $abba$
+$a $A
+$b $B
+Aa aA
+Ab bA
+Ba aB
+Bb bB
+a a
+b b
+A A
+B B
+$ $
+Aa X
+Bb X
+AXa X
+BXb X
+X$ h
+h$ $
+

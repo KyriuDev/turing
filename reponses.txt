@@ -1,0 +1,9 @@
+Q1 - Car il existe un seul chemin pour arriver à une solution (i.e. quel que soit le domino choisi, on ne pourra continuer que si on a pris le bon domino parmi les 4, sinon on est bloqué)
+
+Q2 - La suite 2 0 0 est une solution : ababababa
+
+Q3 - La suite 0 8 9 8 9 8 5 8 9 8 5 8 4 8 9 8 5 8 5 8 8 5 8 est une solution n'utilisant qu'une seule fois le premier domino au début : $q((()()))()$(q(()()))()$((q()()))()$(((q)()))()$((q()))()$(((q)))()$((q))()$(q())()$((q))()$(q)()$q()$(q)$q$h$
+
+Q4 - ??
+Hypothese: dyck.txt forme des mots du langage de dyck. Ils sont bien parenthésés, les $ sont entre les mots.
+Le mot v0 est plus grand que le mot u0, pour arriver a la solution il faudra donc rajouter des mots i tel que ui > vi, c'est a dire 5, 6, et 7. 9 et 10 décalent le q de gauche à droite. 3 et 4 décalent le q de droite à gauche. q ne fait pas vraiment partie du mot mais sert juste à la vérification.
