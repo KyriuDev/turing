@@ -13,9 +13,9 @@ unsigned char** domsu;
 unsigned char** domsv;
 int* doms_mask;
 
-int doms_size=40;
+int doms_size = 40;
 
-int doms_lus=0;
+int doms_lus = 0;
 
 void alloc_doms(int debut, int fin){
 	int i;
@@ -85,6 +85,58 @@ void print_mots(){
 	printf("%s\n%s\n\n", mot_haut, mot_bas);
 }
 
+int select_prioritary_dom_5(){
+	int res = -1;
+	int taille_mot_haut = strlen(mot_haut);
+	int taille_mot_bas = strlen(mot_bas);
+	
+	if (taille_mot_haut == 0 || taille_mot_bas == 0) {
+		//Initialisation : on prend le domino 0
+		res = 0;
+		printf("On initialise a 0\n");
+	} else if (taille_mot_haut > taille_mot_bas) {
+		//Si le mot du haut est plus grand que celui du bas, on prend un domino qui rallonge le mot du bas
+		for (int i = 0; i < doms_lus; i++) {
+			if (doms_mask[i]) {
+				if (res == -1) {
+					res = i;
+				} else {
+					int diffMotActuel = strlen(domsv[i]) - strlen(domsu[i]);
+					int diffMeilleurMot = strlen(domsv[res]) - strlen(domsu[res]);
+
+					if (diffMotActuel > diffMeilleurMot) {
+						res = i;
+					}
+				}
+			}
+		}
+	} else if (taille_mot_haut < taille_mot_bas) {
+		//Sinon on prend un domino qui rallonge le mot du haut
+		for (int i = 0; i < doms_lus; i++) {
+			if (doms_mask[i]) {
+				if (res == -1) {
+					res = i;
+				} else {
+					int diffMotActuel = strlen(domsu[i]) - strlen(domsv[i]);
+					int diffMeilleurMot = strlen(domsu[res]) - strlen(domsv[res]);
+					
+					if (diffMotActuel > diffMeilleurMot) {
+						res = i;
+					}
+				}
+			}
+		}
+	}
+
+	if (res == -1) {
+		printf("Une erreur s'est produite lors de la récupération automatique du prochain domino.\n");
+	}
+
+	return res;
+}
+
+int select_prioritary_dom_6() {
+}
 
 int choose_domino(){
 	int j, count, nonnul;
@@ -111,6 +163,7 @@ int choose_domino(){
 
 	printf("Nous en sommes a:\n\n");
 	print_mots();
+	
 	printf("Veuillez choisir un domino:\n\n");
 	print_dominos();
 	
@@ -118,7 +171,10 @@ int choose_domino(){
 
 	if(i < 0 || i > doms_lus || doms_mask[i] == 0) {
 	   	return choose_domino();
-	}
+	} 
+
+	//i = select_prioritary_dom_5();
+	//TODO i = select_prioritary_dom_6();
 
 	return i;
 }
